@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرح أحياء 11 علمي - مذكرة قلب الأم 2025</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Tajawal) -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="bg-gradient-to-r from-teal-800 to-emerald-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="bg-white text-teal-800 p-2 rounded-lg font-bold text-xl shadow">🧬</div>
+                <div>
+                    <h1 class="font-extrabold text-lg sm:text-xl leading-tight">أحياء 11 علمي - 2025</h1>
+                    <p class="text-xs text-teal-200">شرح وتدريبات مذكرة قلب الأم الشاملة</p>
+                </div>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="w-full md:w-auto mt-2 md:mt-0 flex-1 max-w-xs mx-4">
+                <div class="relative">
+                    <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="بحث في المذكرة..." 
+                        class="w-full pl-3 pr-9 py-1.5 rounded-full text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-teal-300">
+                    <i class="fas font-thin fa-search absolute right-3 top-2.5 text-gray-400 text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Stats/Contact -->
+            <div class="hidden lg:flex items-center space-x-4 space-x-reverse text-xs bg-teal-900/40 px-3 py-1.5 rounded-lg border border-teal-600/30">
+                <span><i class="fas fa-book-open text-teal-300 ml-1"></i> شامل للمنهج</span>
+                <span><i class="fas fa-phone-alt text-teal-300 ml-1"></i> منصة سما: 50855008</span>
+            </div>
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <nav class="bg-teal-900/60 backdrop-blur border-t border-teal-700/50">
+            <div class="max-w-7xl mx-auto px-2 flex overflow-x-auto text-xs sm:text-sm font-semibold no-scrollbar">
+                <button onclick="switchTab('units')" id="btn-units" class="tab-btn active px-4 py-2.5 whitespace-nowrap transition border-b-2 border-transparent">
+                    <i class="fas fa-layer-group ml-1"></i> الدروس والمفاهيم
+                </button>
+                <button onclick="switchTab('diagrams')" id="btn-diagrams" class="tab-btn px-4 py-2.5 whitespace-nowrap transition border-b-2 border-transparent">
+                    <i class="fas fa-microscope ml-1"></i> رسومات تفاعلية
+                </button>
+                <button onclick="switchTab('flashcards')" id="btn-flashcards" class="tab-btn px-4 py-2.5 whitespace-nowrap transition border-b-2 border-transparent">
+                    <i class="fas fa-clone ml-1"></i> بطاقات تعليل ومصطلحات
+                </button>
+                <button onclick="switchTab('quiz')" id="btn-quiz" class="tab-btn px-4 py-2.5 whitespace-nowrap transition border-b-2 border-transparent">
+                    <i class="fas fa-tasks ml-1"></i> اختبارات تقييمية
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
+
+        <!-- SEARCH RESULTS CONTAINER -->
+        <div id="searchContainer" class="hidden mb-6 bg-white p-5 rounded-xl shadow-md border border-teal-100">
+            <div class="flex justify-between items-center mb-4 border-b pb-2">
+                <h3 class="font-bold text-teal-800"><i class="fas fa-search ml-2"></i> نتائج البحث</h3>
+                <button onclick="closeSearch()" class="text-sm text-red-500 hover:text-red-700"><i class="fas fa-times"></i> إغلاق</button>
+            </div>
+            <div id="searchResults" class="space-y-3"></div>
+        </div>
+
+        <!-- TAB 1: UNITS & LESSONS (Full Summary) -->
+        <section id="tab-units" class="space-y-6">
+            
+            <!-- Unit Selection Filter -->
+            <div class="flex overflow-x-auto pb-2 gap-2 text-xs sm:text-sm">
+                <button onclick="filterUnit('all')" class="unit-filter-btn bg-teal-700 text-white px-3 py-1.5 rounded-lg shadow-sm">الكل</button>
+                <button onclick="filterUnit('unit1')" class="unit-filter-btn bg-white text-slate-700 border hover:bg-teal-50 px-3 py-1.5 rounded-lg shadow-sm">تركيب النبات</button>
+                <button onclick="filterUnit('unit2')" class="unit-filter-btn bg-white text-slate-700 border hover:bg-teal-50 px-3 py-1.5 rounded-lg shadow-sm">التغذية والبناء الضوئي</button>
+                <button onclick="filterUnit('unit3')" class="unit-filter-btn bg-white text-slate-700 border hover:bg-teal-50 px-3 py-1.5 rounded-lg shadow-sm">الأنماط الوراثية</button>
+                <button onclick="filterUnit('unit4')" class="unit-filter-btn bg-white text-slate-700 border hover:bg-teal-50 px-3 py-1.5 rounded-lg shadow-sm">وراثة الإنسان والارتباط</button>
+                <button onclick="filterUnit('unit5')" class="unit-filter-btn bg-white text-slate-700 border hover:bg-teal-50 px-3 py-1.5 rounded-lg shadow-sm">الوراثة والجنس</button>
+            </div>
+
+            <!-- UNIT 1: PLANT STRUCTURE -->
+            <div class="unit-card bg-white rounded-xl shadow-md overflow-hidden border border-slate-200" data-unit="unit1">
+                <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-3 text-white flex justify-between items-center">
+                    <h2 class="font-bold text-lg"><i class="fas fa-seedling ml-2"></i> وحدة: تركيب النبات</h2>
+                    <span class="text-xs bg-emerald-700 px-2.5 py-1 rounded-full">المذكرة ص 2 - 5</span>
+                </div>
+                <div class="p-5 space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-teal-800 mb-2 border-b pb-1">المصطلحات الأساسية</h3>
+                            <ul class="text-sm space-y-2">
+                                <li><strong class="text-emerald-700">الثغور:</strong> ثقوب صغيرة بنصل الورقة تسمح بخروج بخار الماء وتبادل الغازات[span_0](start_span)[span_0](end_span).</li>
+                                <li><strong class="text-emerald-700">العقد:</strong> مواضع تتصل فيها الأوراق بسوق النبات[span_1](start_span)[span_1](end_span).</li>
+                                <li><strong class="text-emerald-700">العقل:</strong> قطع الساق الواقعة بين كل عقدتين متجاورتين[span_2](start_span)[span_2](end_span).</li>
+                                <li><strong class="text-emerald-700">البذرة:</strong> تركيب تكاثري يتكون من جنين النبتة وغذائها المدخر[span_3](start_span)[span_3](end_span).</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-teal-800 mb-2 border-b pb-1">أهم التعاليل العلمية</h3>
+                            <ul class="text-sm space-y-2">
+                                <li><strong class="text-slate-700">تغليف الأوراق بطبقة الكيوتيكل:</strong> لمنع تسرب الماء إلى خارج الورقة[span_4](start_span)[span_4](end_span).</li>
+                                <li><strong class="text-slate-700">فائدة الجذور الليفية:</strong> تلتف حول حبيبات التربة وتمنع تأكل الطبقات السطحية[span_5](start_span)[span_5](end_span).</li>
+                                <li><strong class="text-slate-700">إنتاج كميات كبيرة من حبوب اللقاح:</strong> لضمان حدوث عملية التلقيح[span_6](start_span)[span_6](end_span).</li>
+                                <li><strong class="text-slate-700">الوظيفة المزدوجة لبشرة الجذر:</strong> حماية الأنسجة الداخلية + امتصاص الماء بالشعيرات الجذرية[span_7](start_span)[span_7](end_span).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Table -->
+                    <div class="overflow-x-auto">
+                        <h4 class="font-bold text-sm text-teal-800 mb-2">مقارنة أنسجة ومكونات النبات:</h4>
+                        <table class="w-full text-xs sm:text-sm text-right border-collapse border border-slate-200">
+                            <thead>
+                                <tr class="bg-teal-50 text-teal-900">
+                                    <th class="border p-2">وجه المقارنة</th>
+                                    <th class="border p-2">النسيج العمادي</th>
+                                    <th class="border p-2">النسيج الإسفنجي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border p-2 font-semibold">الشكل والترتيب</td>
+                                    <td class="border p-2">خلايا مستطيلة متراصة غنية بالبلاستيدات[span_8](start_span)[span_8](end_span)</td>
+                                    <td class="border p-2">خلايا غير منتظمة متباعدة بينها فراغات هوائية[span_9](start_span)[span_9](end_span)</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2 font-semibold">الأهمية والوظيفة</td>
+                                    <td class="border p-2">القيام بعملية البناء الضوئي[span_10](start_span)[span_10](end_span)</td>
+                                    <td class="border p-2">التبادل الغازي وخروج بخار الماء[span_11](start_span)[span_11](end_span)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 2: PLANT NUTRITION & PHOTOSYNTHESIS -->
+            <div class="unit-card bg-white rounded-xl shadow-md overflow-hidden border border-slate-200" data-unit="unit2">
+                <div class="bg-gradient-to-r from-teal-600 to-cyan-600 px-5 py-3 text-white flex justify-between items-center">
+                    <h2 class="font-bold text-lg"><i class="fas fa-sun ml-2"></i> وحدة: التغذية في النبات (البناء الضوئي)</h2>
+                    <span class="text-xs bg-teal-700 px-2.5 py-1 rounded-full">المذكرة ص 6 - 8</span>
+                </div>
+                <div class="p-5 space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-teal-800 mb-2 border-b pb-1">المفاهيم والتفاعلات</h3>
+                            <ul class="text-sm space-y-2">
+                                <li><strong class="text-teal-700">الستروما (الحشوة):</strong> تراكيب بالبلاستيدة الخضراء يحدث فيها التفاعل اللاضوئي[span_12](start_span)[span_12](end_span).</li>
+                                <li><strong class="text-teal-700">الجرانا:</strong> تراكيب قرصية الشكل متراصة توجد داخل الستروما[span_13](start_span)[span_13](end_span).</li>
+                                <li><strong class="text-teal-700">نقطة التعويض:</strong> كمية الطاقة الضوئية المقتنصة اللازمة لبقاء النبات حياً[span_14](start_span)[span_14](end_span).</li>
+                                <li><strong class="text-teal-700">NADPH:</strong> مركب يزود التفاعلات اللاضوئية بأيونات الهيدروجين[span_15](start_span)[span_15](end_span).</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-teal-800 mb-2 border-b pb-1">تعاليل آلية البناء الضوئي</h3>
+                            <ul class="text-sm space-y-2">
+                                <li><strong class="text-slate-700">اللون الأخضر للنباتات:</strong> لأن الكلوروفيل يعكس الضوء الأخضر ولا يمتصه[span_16](start_span)[span_16](end_span).</li>
+                                <li><strong class="text-slate-700">أهمية إنزيمات النظام الضوئي II:</strong> لشطر جزيء الماء إلى هيدروجين وأكسجين وإلكترونات[span_17](start_span)[span_17](end_span).</li>
+                                <li><strong class="text-slate-700">الشحنة السالبة لسطح الثايلاكويد الخارجي:</strong> لامتلاء السطح الداخلي بأيونات الهيدروجين الموجبة[span_18](start_span)[span_18](end_span).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <h4 class="font-bold text-sm text-teal-800 mb-2">مقارنة التفاعلات الضوئية واللاضوئية (دورة كالفن):</h4>
+                        <table class="w-full text-xs sm:text-sm text-right border-collapse border border-slate-200">
+                            <thead>
+                                <tr class="bg-teal-50 text-teal-900">
+                                    <th class="border p-2">وجه المقارنة</th>
+                                    <th class="border p-2">التفاعلات الضوئية</th>
+                                    <th class="border p-2">التفاعلات اللاضوئية</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border p-2 font-semibold">مكان الحدوث</td>
+                                    <td class="border p-2">الجرانا / غشاء الثايلاكويد[span_19](start_span)[span_19](end_span)</td>
+                                    <td class="border p-2">الستروما (الحشوة)[span_20](start_span)[span_20](end_span)</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2 font-semibold">المواد الناتجة</td>
+                                    <td class="border p-2">O2, ATP, NADPH[span_21](start_span)[span_21](end_span)</td>
+                                    <td class="border p-2">جزيء سكر الجلوكوز (C6H12O6)[span_22](start_span)[span_22](end_span)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 3: GENETICS & MENDELIAN PATTERNS -->
+            <div class="unit-card bg-white rounded-xl shadow-md overflow-hidden border border-slate-200" data-unit="unit3">
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-3 text-white flex justify-between items-center">
+                    <h2 class="font-bold text-lg"><i class="fas fa-dna ml-2"></i> وحدة: الأنماط الوراثية ومبادئ الوراثة</h2>
+                    <span class="text-xs bg-indigo-700 px-2.5 py-1 rounded-full">المذكرة ص 9 - 13</span>
+                </div>
+                <div class="p-5 space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-indigo-900 mb-2 border-b pb-1">قوانين ومفاهيم مندل</h3>
+                            <ul class="text-sm space-y-2">
+                                <li><strong class="text-indigo-700">قانون الانعزال (الأول):</strong> ينفصل زوج الجينات أثناء الانقسام الميوزي بنسبة 3:1 للجيل الثاني[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span).</li>
+                                <li><strong class="text-indigo-700">قانون التوزيع الحر (الثاني):</strong> تتوزع الجينات في الجاميتات عشوائياً ومستقلة بنسبة 9:3:3:1[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span).</li>
+                                <li><strong class="text-indigo-700">التلقيح الاختباري:</strong> يجرى باستخدام صفة متنحية لتمييز الفرد السائد النقي عن الهجين[span_27](start_span)[span_27](end_span).</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-indigo-900 mb-2 border-b pb-1">الوراثة غير المندلية</h3>
+                            <ul class="text-sm space-y-2">
+                                <li><strong class="text-purple-700">السيادة غير التامة:</strong> يكون للذكر الهجين صفة وسطية بين الأبوين (مثل حنك السبع)[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span).</li>
+                                <li><strong class="text-purple-700">السيادة المشتركة:</strong> يظهر تأثير الأليلين كاملاً ومنفصلاً (مثل أبقار الشورتهورن RW)[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 4: HUMAN GENETICS & LINKAGE -->
+            <div class="unit-card bg-white rounded-xl shadow-md overflow-hidden border border-slate-200" data-unit="unit4">
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-5 py-3 text-white flex justify-between items-center">
+                    <h2 class="font-bold text-lg"><i class="fas fa-users ml-2"></i> وحدة: دراسة توارث الصفات في الإنسان والارتباط والعبور</h2>
+                    <span class="text-xs bg-purple-700 px-2.5 py-1 rounded-full">المذكرة ص 13 - 17</span>
+                </div>
+                <div class="p-5 space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-purple-900 mb-2 border-b pb-1">سجل النسب والوراثة البشرية</h3>
+                            <ul class="text-sm space-y-2">
+                                <li><strong class="text-purple-700">سجل النسب:</strong> مخطط يوضح كيفية انتقال الصفات من جيل لآخر[span_32](start_span)[span_32](end_span).</li>
+                                <li><strong class="text-purple-700">المهق:</strong> صفة متنحية تنتج عن غياب صبغة الميلانين في الجلد والشعر[span_33](start_span)[span_33](end_span)[span_34](start_span)[span_34](end_span).</li>
+                                <li><strong class="text-purple-700">الاستجماتيزم:</strong> خلل سائد يسبب عدم تساوي تقوس قرنية العين[span_35](start_span)[span_35](end_span)[span_36](start_span)[span_36](end_span).</li>
+                                <li><strong class="text-purple-700">زواج الأقارب:</strong> يزيد من احتمال ظهور الصفات والأمراض المتنحية الضارة[span_37](start_span)[span_37](end_span).</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                            <h3 class="font-bold text-purple-900 mb-2 border-b pb-1">الارتباط والعبور الوراثي</h3>
+                            <ul class="text-sm space-y-2">
+                                <li><strong class="text-pink-700">الارتباط:</strong> وراثة صفات تقع جيناتها على الكروموسوم نفسه[span_38](start_span)[span_38](end_span).</li>
+                                <li><strong class="text-pink-700">العبور:</strong> تبادل المادة الوراثية بين الكروماتيدات الداخلية المتجاورة للرباعي[span_39](start_span)[span_39](end_span).</li>
+                                <li><strong class="text-pink-700">الكيازما:</strong> مواقع تبادل المادة الوراثية (الأليلات)[span_40](start_span)[span_40](end_span).</li>
+                                <li><strong class="text-pink-700">ذبا
